@@ -1,0 +1,240 @@
+:root {
+    --bg-color: #ffeef7; /* Blush Pink */
+    --primary: #ff4757;  /* Deep Rose */
+    --accent: #ff6b81;   /* Soft Pink */
+    --text: #2f3542;     /* Charcoal */
+    --white: #ffffff;
+    --font-heading: 'Love Light', cursive;
+    --font-body: 'Nunito', sans-serif;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding doesn't increase element size */
+}
+
+html {
+    scroll-behavior: smooth; /* Enables the smooth scroll-through experience */
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: var(--font-body);
+    color: var(--text);
+    overflow-x: hidden; /* Prevents horizontal scrolling issues */
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--primary);
+}
+
+section {
+    min-height: 100vh; /* Each section takes at least the full screen height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2; /* Sits above the background hearts */
+}
+.hero-content {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(5px); /* Modern "glassmorphism" effect */
+    box-shadow: var(--shadow);
+}
+
+.main-title {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.gif-container img {
+    width: 200px;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    position: relative; /* Anchor for the moving button */
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 800;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#yes-btn {
+    background-color: var(--primary);
+    color: var(--white);
+    box-shadow: 0 5px 20px rgba(255, 71, 87, 0.4);
+}
+
+#yes-btn:hover {
+    transform: scale(1.1); /* Grows when hovered */
+}
+
+#no-btn {
+    background-color: var(--white);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+.timeline-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 50px auto;
+}
+
+/* The Central Vertical Line */
+.timeline-container::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: var(--white);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+    border-radius: 3px;
+}
+
+/* Container for each memory */
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    background-color: inherit;
+}
+
+/* Left and Right positioning */
+.left { left: 0; }
+.right { left: 50%; }
+
+/* The Content Box inside the item */
+.content {
+    padding: 20px 30px;
+    background-color: var(--white);
+    position: relative;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.content img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 15px;
+    transition: transform 0.3s ease;
+}
+
+.content img:hover {
+    transform: scale(1.02);
+}
+
+/* The Timeline Dots */
+.timeline-item::after {
+    content: '❤️';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -17px;
+    background-color: var(--bg-color);
+    border: 4px solid var(--primary);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fix dot position for right side items */
+.right::after {
+    left: -16px;
+}
+
+/* Timeline Responsiveness (Mobile) */
+@media screen and (max-width: 600px) {
+   .timeline-container::after { left: 31px; }
+   .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+   .timeline-item::before { left: 60px; }
+   .left::after,.right::after { left: 15px; }
+   .right { left: 0%; }
+}
+.letter-container {
+    perspective: 1000px;
+}
+
+.paper {
+    background-color: #fffdf0; /* Paper-like off-white */
+    width: 90%;
+    max-width: 600px;
+    padding: 60px;
+    margin: 0 auto;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    border: 1px solid #eaeaea;
+    transform: rotate(-1deg);
+    position: relative;
+}
+
+.paper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 40px;
+    height: 100%;
+    width: 2px;
+    background: rgba(255,0,0,0.1); /* The margin line of notebook paper */
+}
+
+.dear { font-size: 1.5rem; font-weight: bold; margin-bottom: 20px; }
+.body-text { font-size: 1.2rem; line-height: 1.8; color: #555; }
+.signature { margin-top: 40px; font-family: var(--font-heading); font-size: 2rem; text-align: right; }
+
+/* Countdown Styling */
+.countdown-box { text-align: center; margin-bottom: 50px; }
+#timer { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+.time-unit { 
+    background: var(--white); 
+    padding: 20px; 
+    border-radius: 15px; 
+    min-width: 100px;
+    box-shadow: var(--shadow);
+}
+.time-unit span { font-size: 2.5rem; font-weight: 800; color: var(--primary); display: block;}
+.time-unit p { font-size: 0.9rem; color: #777; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Background Hearts Animation */
+.floating-hearts {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none; /* Allows clicking through the background */
+    overflow: hidden;
+}
+.heart {
+    position: absolute;
+    bottom: -100px;
+    background: var(--accent);
+    opacity: 0.6;
+    border-radius: 50%;
+    animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
